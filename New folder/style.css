@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 900px;
+    margin: auto;
+    max-width: 90vw;
+    text-align: center;
+    padding-top: 10px;
+    transition: transform .5s;
+}
+
+.container .title {
+margin-left: 160px;
+font-weight: bold;
+font-size: 30px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+    header .icon-cart {
+        position: relative;
+        cursor: pointer;
+    }
+
+        header .icon-cart span {
+            display: flex;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            right: -20px;
+        }
+
+
+.listProduct {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-left: 150px;
+}
+
+    .listProduct .item {
+        background-color: #eeeee6;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 3px;
+    }
+
+        .listProduct .item h2 {
+            font-weight: 700;
+            font-size: large;
+        }
+
+        .listProduct .item .price {
+            letter-spacing: 7px;
+            font-size: small;
+        }
+
+        .listProduct .item button {
+            background-color: #353432;
+            color: #eee;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+.cartTab {
+    width: 350px;
+    background-color: #353432;
+    color: #eee;
+    position: fixed;
+    inset: 0 -100px 0 auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    transition: .5s;
+    overflow-y: auto;
+}
+
+body.showCart .cartTab {
+    inset: 0 0 0 auto;
+}
+
+body.showCart .container {
+    transform: translateX(-250px); /* Sepet alaný açýldýðýnda içerik kayarsa burayý ayarlayýn */
+}
+
+.cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.cartTab .btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+    .cartTab .btn button {
+        background-color: #E8BC0E;
+        border: none;
+        font-family: Poppins;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .cartTab .btn .close {
+        background-color: #eee;
+    }
+
+.cartTab .listCart .item img {
+    width: 100%;
+}
+
+.cartTab .listCart .item {
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.listCart .item:nth-child(even) {
+    background-color: #eee1;
+}
+
+.listCart {
+    overflow: auto;
+}
+
+    .listCart::-webkit-scrollbar {
+        width: 0;
+    }
+
+.removeCart {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.item h1{
+    font-size: 30px;
+}
