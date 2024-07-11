@@ -39,7 +39,7 @@ const addDataCartHTML = () => {
             newCartProduct.innerHTML = `
                 <h1>${product.id}</h1>
                 <h2>${product.name}</h2>
-                <button class="removeCart button" data-id="${product.id}">PASİF SİPARİŞ</button>`;
+                <button class="removeCart button" data-id="${product.id}">${product.removeCart}</button>`;
             cartTabHTML.appendChild(newCartProduct);
         });
     }
