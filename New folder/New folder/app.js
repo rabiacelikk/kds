@@ -1,15 +1,15 @@
-ï»¿let body = document.querySelector("body");
+let body = document.querySelector("body");
 let listProductHTML = document.querySelector(".listProduct");
 let cartTabHTML = document.querySelector(".cartTab .listCart");
 
-let listProducts = JSON.parse(localStorage.getItem('listProducts')) || [];
+let listProducts = [];
 let passiveOrders = JSON.parse(localStorage.getItem('passiveOrders')) || [];
-let clickCounts = {}; // TÄ±klama sayÄ±sÄ±nÄ± saklamak iÃ§in
+let clickCounts = {}; // Týklama sayýsýný saklamak için
 
 body.classList.toggle("showCart");
 
 const addDataToHTML = () => {
-    // mevcut verileri HTML'den kaldÄ±r
+    // mevcut verileri HTML'den kaldýr
     listProductHTML.innerHTML = "";
 
     // yeni verileri ekle
@@ -22,7 +22,7 @@ const addDataToHTML = () => {
             newProduct.innerHTML = `
                 <h1>${product.id}</h1>
                 <h2>${product.name}</h2>
-                <button class="addCart button" data-id="${product.id}">AKTÄ°F SÄ°PARÄ°Åž</button>`;
+                <button class="addCart" data-id="${product.id}">${product.removeCart}</button>`;
             listProductHTML.appendChild(newProduct);
         });
     }
@@ -39,7 +39,7 @@ const addDataCartHTML = () => {
             newCartProduct.innerHTML = `
                 <h1>${product.id}</h1>
                 <h2>${product.name}</h2>
-                <button class="removeCart button" data-id="${product.id}">PASÄ°F SÄ°PARÄ°Åž</button>`;
+                <button class="removeCart" data-id="${product.id}">AKTÝF SÝPARÝÞ</button>`;
             cartTabHTML.appendChild(newCartProduct);
         });
     }
@@ -56,11 +56,10 @@ listProductHTML.addEventListener('click', (event) => {
                 passiveOrders.push(product);
                 localStorage.setItem('passiveOrders', JSON.stringify(passiveOrders));
                 listProducts = listProducts.filter(p => p.id != productId);
-                localStorage.setItem('listProducts', JSON.stringify(listProducts));
                 addDataToHTML();
                 addDataCartHTML();
             }
-            clickCounts[productId] = 0; // SÄ±fÄ±rlama
+            clickCounts[productId] = 0; // Sýfýrlama
         }
     }
 })
@@ -76,30 +75,25 @@ cartTabHTML.addEventListener('click', (event) => {
                 listProducts.push(product);
                 passiveOrders = passiveOrders.filter(p => p.id != productId);
                 localStorage.setItem('passiveOrders', JSON.stringify(passiveOrders));
-                localStorage.setItem('listProducts', JSON.stringify(listProducts));
                 addDataToHTML();
                 addDataCartHTML();
             }
-            clickCounts[productId] = 0; // SÄ±fÄ±rlama
+            clickCounts[productId] = 0; // Sýfýrlama
         }
     }
 })
 
 const initApp = () => {
-    // json'dan veri al ve saklanan verileri kontrol et
-    if (listProducts.length === 0) {
-        fetch("products.json")
-            .then((response) => response.json())
-            .then((data) => {
-                listProducts = data;
-                localStorage.setItem('listProducts', JSON.stringify(listProducts));
-                addDataToHTML(); // ÃœrÃ¼nleri gÃ¶stermek iÃ§in fonksiyonu Ã§aÄŸÄ±r
-            });
-    } else {
-        addDataToHTML(); // Yerel depolamadan verileri yÃ¼kle ve gÃ¶ster
-    }
+    // json'dan veri al
+    fetch("products.json")
+        .then((response) => response.json())
+        .then((data) => {
+            listProducts = data;
+            console.log(listProducts);
+            addDataToHTML(); // Ürünleri göstermek için fonksiyonu çaðýr
+        });
 
-    // Pasif sipariÅŸleri yerel depolamadan baÅŸlat
+    // Pasif sipariþleri yerel depolamadan baþlat
     addDataCartHTML();
 };
 

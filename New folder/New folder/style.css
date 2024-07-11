@@ -1,4 +1,4 @@
-ï»¿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -13,12 +13,11 @@ body {
     transition: transform .5s;
 }
 
-    .container .title {
-        margin-left: 160px;
-        font-weight: bold;
-        font-size: 30px;
-    }
-
+.container .title {
+margin-left: 160px;
+font-weight: bold;
+font-size: 30px;
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -78,8 +77,6 @@ header {
             margin-top: 10px;
             border: none;
             cursor: pointer;
-            width: 100px;
-            font-weight: 400;
         }
 
 .cartTab {
@@ -99,7 +96,7 @@ body.showCart .cartTab {
 }
 
 body.showCart .container {
-    transform: translateX(-250px); /* Sepet alanÃ½ aÃ§Ã½ldÃ½Ã°Ã½nda iÃ§erik kayarsa burayÃ½ ayarlayÃ½n */
+    transform: translateX(-250px); /* Sepet alaný açýldýðýnda içerik kayarsa burayý ayarlayýn */
 }
 
 .cartTab h1 {
@@ -126,6 +123,10 @@ body.showCart .container {
         background-color: #eee;
     }
 
+.cartTab .listCart .item img {
+    width: 100%;
+}
+
 .cartTab .listCart .item {
     display: grid;
     grid-template-columns: 70px 150px 50px 1fr;
@@ -149,11 +150,8 @@ body.showCart .container {
 .removeCart {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    width: 100px;
 }
 
-.item h1 {
+.item h1{
     font-size: 30px;
 }
-
-
